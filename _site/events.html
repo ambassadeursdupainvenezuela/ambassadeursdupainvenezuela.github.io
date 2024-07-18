@@ -1,16 +1,23 @@
----
-layout: null
----
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog - Ambassadeurs du Pain Venezuela</title>
+  <title>Eventos y Talleres - Ambassadeurs du Pain Venezuela</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  {% include colors.html %}
+    <style>
+    .bg-primary { background-color: #7f383a; }
+    .bg-secondary { background-color: #f69583; }
+    .bg-accent { background-color: #fffaf0; }
+    .bg-dark { background-color: #7f383a; }
+    .bg-highlight { background-color: #ed7205; }
+    .text-primary { color: #7f383a; }
+    .text-secondary { color: #f69583; }
+    .text-accent { color: #fffaf0; }
+    .text-dark { color: #7f383a; }
+    .text-highlight { color: #ed7205; }
+  </style>
 </head>
 <body class="bg-accent">
 
@@ -31,44 +38,47 @@ layout: null
   <section class="bg-cover bg-center h-64 text-white" style="background-image: url('https://via.placeholder.com/1920x600');">
     <div class="flex items-center justify-center h-full bg-dark bg-opacity-50">
       <div class="text-center">
-        <h2 class="text-4xl font-bold">Blog</h2>
-        <p class="text-xl mt-4">Últimas Noticias y Actualizaciones</p>
+        <h2 class="text-4xl font-bold">Eventos y Talleres</h2>
+        <p class="text-xl mt-4">Participa en nuestros próximos eventos y talleres</p>
       </div>
     </div>
   </section>
 
-  <!-- Blog Content -->
+  <!-- Events and Trainings Content -->
   <section class="py-16 bg-accent">
     <div class="container mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-        <!-- Blog Post 1 -->
+        <!-- Event 1 -->
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-          <img src="https://via.placeholder.com/600x400" alt="Blog Post 1" class="w-full">
+          <img src="https://via.placeholder.com/600x400" alt="Evento 1" class="w-full">
           <div class="p-6">
-            <h3 class="text-2xl font-bold mb-2 text-primary">Tenemos delegación</h3>
-            <p class="text-dark mb-4">Resumen del contenido del primer post del blog. Este texto debe ser atractivo y proporcionar una visión general del artículo.</p>
-            <a href="/blog/tenemos-delegacion.html" class="text-highlight hover:underline">Leer Más <i class="fas fa-arrow-right"></i></a>
+            <h3 class="text-2xl font-bold mb-2 text-primary">Título del Evento 1</h3>
+            <p class="text-secondary mb-2"><i class="fas fa-calendar-alt"></i> Fecha del Evento</p>
+            <p class="text-dark mb-4">Resumen del evento o taller. Este texto debe ser atractivo y proporcionar una visión general del evento.</p>
+            <a href="/events/curso-en-linea.html" class="text-highlight hover:underline">Leer Más <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
-        <!-- Blog Post 2 -->
+        <!-- Event 2 -->
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-          <img src="https://via.placeholder.com/600x400" alt="Blog Post 2" class="w-full">
+          <img src="https://via.placeholder.com/600x400" alt="Evento 2" class="w-full">
           <div class="p-6">
-            <h3 class="text-2xl font-bold mb-2 text-primary">Título del Post 2</h3>
-            <p class="text-dark mb-4">Resumen del contenido del segundo post del blog. Este texto debe ser atractivo y proporcionar una visión general del artículo.</p>
+            <h3 class="text-2xl font-bold mb-2 text-primary">Título del Evento 2</h3>
+            <p class="text-secondary mb-2"><i class="fas fa-calendar-alt"></i> Fecha del Evento</p>
+            <p class="text-dark mb-4">Resumen del evento o taller. Este texto debe ser atractivo y proporcionar una visión general del evento.</p>
             <a href="#" class="text-highlight hover:underline">Leer Más <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
-        <!-- Blog Post 3 -->
+        <!-- Event 3 -->
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-          <img src="https://via.placeholder.com/600x400" alt="Blog Post 3" class="w-full">
+          <img src="https://via.placeholder.com/600x400" alt="Evento 3" class="w-full">
           <div class="p-6">
-            <h3 class="text-2xl font-bold mb-2 text-primary">Título del Post 3</h3>
-            <p class="text-dark mb-4">Resumen del contenido del tercer post del blog. Este texto debe ser atractivo y proporcionar una visión general del artículo.</p>
+            <h3 class="text-2xl font-bold mb-2 text-primary">Título del Evento 3</h3>
+            <p class="text-secondary mb-2"><i class="fas fa-calendar-alt"></i> Fecha del Evento</p>
+            <p class="text-dark mb-4">Resumen del evento o taller. Este texto debe ser atractivo y proporcionar una visión general del evento.</p>
             <a href="#" class="text-highlight hover:underline">Leer Más <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
-        <!-- Repeat similar blocks for more blog posts -->
+        <!-- Repeat similar blocks for more events and trainings -->
       </div>
     </div>
   </section>
