@@ -1,13 +1,24 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const items = document.querySelectorAll('.carousel-item');
+      const items = document.querySelectorAll('.nosotros');
+      const Ritems = document.querySelectorAll('.respectus');
       let currentIndex = 0;
+      let RcurrentIndex = 0;
 
       function showItem(index) {
         items.forEach((item, i) => {
           item.classList.remove('active');
           if (i === index) {
             item.classList.add('active');
+          }
+        });
+      }
+
+      function showRItem(index) {
+        Ritems.forEach((Ritem, i) => {
+          Ritem.classList.remove('active');
+          if (i === index) {
+            Ritem.classList.add('active');
           }
         });
       }
@@ -20,6 +31,15 @@
       document.querySelector('[data-slide="next"]').addEventListener('click', function () {
         currentIndex = (currentIndex === items.length - 1) ? 0 : currentIndex + 1;
         showItem(currentIndex);
+      });
+      document.querySelector('.rprev').addEventListener('click', function () {
+        RcurrentIndex = (RcurrentIndex === 0) ? Ritems.length - 1 : RcurrentIndex - 1;
+        showRItem(RcurrentIndex);
+      });
+
+      document.querySelector('.rnext').addEventListener('click', function () {
+        RcurrentIndex = (RcurrentIndex === Ritems.length - 1) ? 0 : RcurrentIndex + 1;
+        showRItem(RcurrentIndex);
       });
     });
   </script>
