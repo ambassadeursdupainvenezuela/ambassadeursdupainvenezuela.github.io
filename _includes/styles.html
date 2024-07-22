@@ -11,4 +11,42 @@
     .text-accent { color: #fffaf0; }
     .text-dark { color: #7f383a; }
     .text-highlight { color: #ed7205; }
+
+    .carousel-inner {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+    .carousel-item {
+      position: absolute;
+      width: 100%;
+      transition: opacity 0.5s ease-in-out;
+      opacity: 0;
+    }
+    .carousel-item.active {
+      position: relative;
+      opacity: 1;
+    }
+    .carousel-control-prev, .carousel-control-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carousel-control-prev {
+      left: 1rem;
+    }
+    .carousel-control-next {
+      right: 1rem;
+    }
   </style>
