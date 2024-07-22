@@ -1,20 +1,27 @@
 collections:
   posts:
     output: true
-  events:
+  eventos:
+    output: true
+  blog:
     output: true
 
 defaults:
   - scope:
       path: ""
-      type: "events"
+      type: "eventos"
     values:
-      layout: "event"
+      layout: "default"
+  - scope:
+      path: ""
+      type: "blog"
+    values:
+      layout: "default"
   - scope:
       path: ""
       type: "posts"
     values:
-      layout: "post"
+      layout: "default"
   - scope:
       path: ""
     values:

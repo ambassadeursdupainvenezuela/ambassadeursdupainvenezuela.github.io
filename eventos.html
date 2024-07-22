@@ -17,37 +17,16 @@ title: Eventos y Talleres - Ambassadeurs du Pain Venezuela
   <section class="py-16 bg-accent">
     <div class="container mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-        <!-- Event 1 -->
+        {% for post in site.eventos %}
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-          <img src="https://via.placeholder.com/600x400" alt="Evento 1" class="w-full">
+          <img src="{{ post.image }}" alt="Imagen del artículo {{ post.title }}" class="w-full">
           <div class="p-6">
-            <h3 class="text-2xl font-bold mb-2 text-primary">Título del Evento 1</h3>
-            <p class="text-secondary mb-2"><i class="fas fa-calendar-alt"></i> Fecha del Evento</p>
-            <p class="text-dark mb-4">Resumen del evento o taller. Este texto debe ser atractivo y proporcionar una visión general del evento.</p>
-            <a href="/events/curso-en-linea.html" class="text-highlight hover:underline">Leer Más <i class="fas fa-arrow-right"></i></a>
+            <h3 class="text-2xl font-bold mb-2 text-primary">{{ post.title }}</h3>
+            <p class="text-dark mb-4">{{ post.subtitle }}</p>
+            <a href="{{ post.url }}" class="text-highlight hover:underline">Leer Más <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
-        <!-- Event 2 -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-          <img src="https://via.placeholder.com/600x400" alt="Evento 2" class="w-full">
-          <div class="p-6">
-            <h3 class="text-2xl font-bold mb-2 text-primary">Título del Evento 2</h3>
-            <p class="text-secondary mb-2"><i class="fas fa-calendar-alt"></i> Fecha del Evento</p>
-            <p class="text-dark mb-4">Resumen del evento o taller. Este texto debe ser atractivo y proporcionar una visión general del evento.</p>
-            <a href="/events/curso-en-linea.html" class="text-highlight hover:underline">Leer Más <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-        <!-- Event 3 -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-          <img src="https://via.placeholder.com/600x400" alt="Evento 3" class="w-full">
-          <div class="p-6">
-            <h3 class="text-2xl font-bold mb-2 text-primary">Título del Evento 3</h3>
-            <p class="text-secondary mb-2"><i class="fas fa-calendar-alt"></i> Fecha del Evento</p>
-            <p class="text-dark mb-4">Resumen del evento o taller. Este texto debe ser atractivo y proporcionar una visión general del evento.</p>
-            <a href="/events/curso-en-linea.html" class="text-highlight hover:underline">Leer Más <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-        <!-- Repeat similar blocks for more events and trainings -->
+        {% endfor %}
       </div>
     </div>
   </section>

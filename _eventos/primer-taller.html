@@ -1,0 +1,43 @@
+---
+layout: default
+title: Estamos planificando nuestro primer Taller Respectus Panis
+subtitle: Estamos planificando el primer taller sobre el método Respectus Panis&#174; aplicado a la panificación en Venezuela.
+date: 22/Julio/2024
+image: /images/respectus-panis/1.jpg
+location: Por definir
+registration-url: https://forms.gle/HPL4C33P7kQCEa3T6
+---
+
+<!-- Breadcrumbs -->
+<nav class="bg-accent py-3 px-6">
+  <div class="container mx-auto">
+    <ul class="flex items-center text-dark">
+      <li><a href="/" class="hover:text-highlight"><i class="fas fa-home"></i> Home</a></li>
+      <li class="mx-2">/</li>
+      <li><a href="/eventos.html" class="hover:text-highlight">Eventos</a></li>
+      <li class="mx-2">/</li>
+      <li>{{ page.title }}</li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Event Content -->
+<section class="py-16 bg-accent">
+  <div class="container mx-auto px-6">
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+      <img src="{{ page.image }}" alt="Imagen del Evento {{ page.title }}" style="width: 50%;">
+      <div class="p-6">
+        <h1 class="text-4xl font-bold mb-4 text-primary">{{ page.title }}</h1>
+        <p class="text-secondary mb-4"><i class="fas fa-calendar-alt"></i> {{ page.date | date: "%d/%m/%Y" }}</p>
+        <p class="text-secondary mb-4"><i class="fas fa-map-marker-alt"></i> {{ page.location }}</p>
+        <p class="text-dark mb-6">{{ page.subtitle }}</p>
+        <p class="text-dark mb-6">Si eres Panadero, Dueño de Panadería, Estudiante de cocina o de panadería o
+          sencillamente un interesado en conocer el método, regístrate para que te enteres del próximo taller.</p>
+        <div class="text-center">
+          <a href="{{ page.registration-url }}" target="_blank"
+            class="bg-highlight px-6 py-3 rounded-full text-white inline-block mt-4">¡Regístrate!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
