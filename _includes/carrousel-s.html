@@ -1,0 +1,25 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const items = document.querySelectorAll('.carousel-item');
+      let currentIndex = 0;
+
+      function showItem(index) {
+        items.forEach((item, i) => {
+          item.classList.remove('active');
+          if (i === index) {
+            item.classList.add('active');
+          }
+        });
+      }
+
+      document.querySelector('[data-slide="prev"]').addEventListener('click', function () {
+        currentIndex = (currentIndex === 0) ? items.length - 1 : currentIndex - 1;
+        showItem(currentIndex);
+      });
+
+      document.querySelector('[data-slide="next"]').addEventListener('click', function () {
+        currentIndex = (currentIndex === items.length - 1) ? 0 : currentIndex + 1;
+        showItem(currentIndex);
+      });
+    });
+  </script>
