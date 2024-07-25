@@ -7,8 +7,8 @@ image: /images/logo-ve.jpg
 ---
 
 <!-- Sección Hero -->
-<section class="bg-center h-96 text-accent"
-  style="background-image: url('/images/logo-ve.jpg'); background-size: cover;">
+<section class="bg-center bg-white object-center h-96 text-accent"
+  style="background-image: url('/images/logo-ve.jpg');background-repeat: no-repeat;">
   <div class="flex items-center justify-center h-full bg-dark-opaque">
     <div class="text-center">
       <h1 class="text-5xl font-bold mb-4">Promoviendo la Excelencia en la Panadería Venezolana</h1>
@@ -152,29 +152,11 @@ image: /images/logo-ve.jpg
   <div class="container mx-auto px-6">
     <h2 class="text-4xl font-bold text-center mb-12 text-primary">Galería</h2>
     <div class="flex flex-wrap -mx-4">
-
+    {% for imagen in site.data.galeria %}
       <div class="w-full md:w-1/3 lg:w-1/4 px-4 mb-8">
-        <img src="/images/galeria/equipo-2025.jpg" alt="Galería" class="w-full rounded-lg mb-4">
+        <img src="/images/galeria/{{ imagen }}" alt="{{ imagen }}" class="w-full rounded-lg mb-4">
       </div>
-      <div class="w-full md:w-1/3 lg:w-1/4 px-4 mb-8">
-        <img src="/images/galeria/sesion-tecnica.jpg" alt="Galería" class="w-full rounded-lg mb-4">
-      </div>
-      <div class="w-full md:w-1/3 lg:w-1/4 px-4 mb-8">
-        <img src="/images/galeria/sesion-tecnica4.jpg" alt="Galería" class="w-full rounded-lg mb-4">
-      </div>
-      <div class="w-full md:w-1/3 lg:w-1/4 px-4 mb-8">
-        <img src="/images/galeria/almuerzo-amandio.jpg" alt="Galería" class="w-full rounded-lg mb-4">
-      </div>
-      <div class="w-full md:w-1/3 lg:w-1/4 px-4 mb-8">
-        <img src="/images/galeria/sesion-tecnica2.jpg" alt="Galería" class="w-full rounded-lg mb-4">
-      </div>
-      <div class="w-full md:w-1/3 lg:w-1/4 px-4 mb-8">
-        <img src="/images/galeria/sesion-tecnica3.jpg" alt="Galería" class="w-full rounded-lg mb-4">
-      </div>
-      <div class="w-full md:w-1/3 lg:w-1/4 px-4 mb-8">
-        <img src="/images/galeria/baguette.jpg" alt="Galería" class="rounded-lg mb-4" style="height: 400px;">
-        <!-- Repite bloques similares para más imágenes de la galería -->
-      </div>
+    {% endfor %}
     </div>
   </div>
 </section>
