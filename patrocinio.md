@@ -40,7 +40,7 @@ description: Colabora con los Embajadores del Pan de Venezuela y sé parte de nu
             <div class="text-center mt-8">
                 <a href="https://patrocinio.ambassadeursdupainvenezuela.com" 
                    class="inline-block bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-                    Convierte en Patrocinante
+                    Deseo patrocinar al equipo que va al Mondial du Pain
                 </a>
             </div>
         </div>
