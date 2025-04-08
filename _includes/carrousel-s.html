@@ -1,10 +1,11 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const items = document.querySelectorAll('.carousel-item');
-      let currentIndex = 0;
+      // Handle Angélica Cova carousel
+      const angelicaItems = document.querySelectorAll('.angelica.carousel-item');
+      let angelicaIndex = 0;
 
-      function showItem(index) {
-        items.forEach((item, i) => {
+      function showAngelicaItem(index) {
+        angelicaItems.forEach((item, i) => {
           item.classList.remove('active');
           if (i === index) {
             item.classList.add('active');
@@ -12,14 +13,91 @@
         });
       }
 
-      document.querySelector('[data-slide="prev"]').addEventListener('click', function () {
-        currentIndex = (currentIndex === 0) ? items.length - 1 : currentIndex - 1;
-        showItem(currentIndex);
+      // Previous button for Angélica carousel
+      document.querySelector('.aprev').addEventListener('click', function() {
+        angelicaIndex = (angelicaIndex === 0) ? angelicaItems.length - 1 : angelicaIndex - 1;
+        showAngelicaItem(angelicaIndex);
       });
 
-      document.querySelector('[data-slide="next"]').addEventListener('click', function () {
-        currentIndex = (currentIndex === items.length - 1) ? 0 : currentIndex + 1;
-        showItem(currentIndex);
+      // Next button for Angélica carousel
+      document.querySelector('.anext').addEventListener('click', function() {
+        angelicaIndex = (angelicaIndex === angelicaItems.length - 1) ? 0 : angelicaIndex + 1;
+        showAngelicaItem(angelicaIndex);
+      });
+
+      // Handle William Tse Lee carousel
+      const williamItems = document.querySelectorAll('.william.carousel-item');
+      let williamIndex = 0;
+
+      function showWilliamItem(index) {
+        williamItems.forEach((item, i) => {
+          item.classList.remove('active');
+          if (i === index) {
+            item.classList.add('active');
+          }
+        });
+      }
+
+      // Previous button for William carousel
+      document.querySelector('.rprev').addEventListener('click', function() {
+        williamIndex = (williamIndex === 0) ? williamItems.length - 1 : williamIndex - 1;
+        showWilliamItem(williamIndex);
+      });
+
+      // Next button for William carousel
+      document.querySelector('.rnext').addEventListener('click', function() {
+        williamIndex = (williamIndex === williamItems.length - 1) ? 0 : williamIndex + 1;
+        showWilliamItem(williamIndex);
+      });
+
+      // Handle Pablo Hernández carousel
+      const pabloItems = document.querySelectorAll('.pablo.carousel-item');
+      let pabloIndex = 0;
+
+      function showPabloItem(index) {
+        pabloItems.forEach((item, i) => {
+          item.classList.remove('active');
+          if (i === index) {
+            item.classList.add('active');
+          }
+        });
+      }
+
+      // Previous button for Pablo carousel
+      document.querySelector('.pprev').addEventListener('click', function() {
+        pabloIndex = (pabloIndex === 0) ? pabloItems.length - 1 : pabloIndex - 1;
+        showPabloItem(pabloIndex);
+      });
+
+      // Next button for Pablo carousel
+      document.querySelector('.pnext').addEventListener('click', function() {
+        pabloIndex = (pabloIndex === pabloItems.length - 1) ? 0 : pabloIndex + 1;
+        showPabloItem(pabloIndex);
+      });
+
+      // Handle Alexander Ramírez carousel
+      const alexanderItems = document.querySelectorAll('.alexander.carousel-item');
+      let alexanderIndex = 0;
+
+      function showAlexanderItem(index) {
+        alexanderItems.forEach((item, i) => {
+          item.classList.remove('active');
+          if (i === index) {
+            item.classList.add('active');
+          }
+        });
+      }
+
+      // Previous button for Alexander carousel
+      document.querySelector('.arprev').addEventListener('click', function() {
+        alexanderIndex = (alexanderIndex === 0) ? alexanderItems.length - 1 : alexanderIndex - 1;
+        showAlexanderItem(alexanderIndex);
+      });
+
+      // Next button for Alexander carousel
+      document.querySelector('.arnext').addEventListener('click', function() {
+        alexanderIndex = (alexanderIndex === alexanderItems.length - 1) ? 0 : alexanderIndex + 1;
+        showAlexanderItem(alexanderIndex);
       });
     });
   </script>
