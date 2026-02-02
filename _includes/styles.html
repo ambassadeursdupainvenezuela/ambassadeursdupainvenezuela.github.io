@@ -65,4 +65,45 @@
       font-size: 1.5rem; 
       line-height: 2rem;
     }
+
+    /* Tailwind preflight resets headings to inherit; make H2 prominent */
+    h2 {
+      font-weight: 700;
+      font-size: 1.75rem;
+      line-height: 2.25rem;
+    }
+
+    @media (max-width: 640px) {
+      h2 {
+        font-size: 1.75rem;
+        line-height: 2.25rem;
+      }
+    }
+
+    /* Masonry gallery in reading order (left->right, top->bottom)
+       Uses CSS grid + row spans calculated in JS. */
+    .masonry-grid {
+      --masonry-gap: 1.5rem;   /* ~24px */
+      --masonry-row: 10px;     /* base row height for spanning */
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--masonry-gap);
+      grid-auto-rows: var(--masonry-row);
+    }
+    @media (min-width: 768px) {
+      .masonry-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      .masonry-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+
+    .masonry-grid-item {
+      /* JS will set grid-row-end span */
+      break-inside: avoid;
+    }
+    .masonry-grid-item img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
   </style>

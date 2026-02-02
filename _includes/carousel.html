@@ -1,0 +1,84 @@
+{%- comment -%}
+Reusable image carousel.
+
+Usage (pipe-separated):
+  {% include carousel.html
+     id="carousel-mise-en-place"
+     max_w="max-w-3xl"
+     images="/images/mondial-du-pain/1.jpg|/images/mondial-du-pain/2.jpg|/images/mondial-du-pain/3.jpg"
+     alts="Mondial du Pain 2025|Equipo Venezuela|Competencia"
+  %}
+
+Usage with many images:
+  {% include carousel.html
+     id="carousel-galeria-mondial"
+     max_w="max-w-4xl"
+     images="/images/mondial-du-pain/1.jpg|/images/mondial-du-pain/2.jpg|/images/mondial-du-pain/3.jpg|/images/mondial-du-pain/4.jpg|/images/mondial-du-pain/5.jpg|/images/mondial-du-pain/6.jpg|/images/mondial-du-pain/7.jpg|/images/mondial-du-pain/8.jpg|/images/mondial-du-pain/9.jpg|/images/mondial-du-pain/10.jpg"
+     alts="Mondial du Pain 2025|Mondial du Pain 2025|Mondial du Pain 2025|Mondial du Pain 2025|Mondial du Pain 2025|Mondial du Pain 2025|Mondial du Pain 2025|Mondial du Pain 2025|Mondial du Pain 2025|Mondial du Pain 2025"
+  %}
+
+Notes:
+- `id` should be unique per page.
+- `alts` is optional; if omitted, a generic alt will be used.
+{%- endcomment -%}
+
+{%- assign carousel_id = include.id | default: "carousel" -%}
+{%- assign images_raw = include.images | default: "" -%}
+{%- assign alts_raw = include.alts | default: "" -%}
+{%- assign max_w = include.max_w | default: "max-w-3xl" -%}
+
+{%- assign images = images_raw | split: "|" -%}
+{%- assign alts = alts_raw | split: "|" -%}
+
+<div id="{{ carousel_id }}" class="relative w-full mx-auto {{ max_w }}" data-carousel-root="true">
+  <div class="carousel-inner relative overflow-hidden w-full">
+    {%- for img in images -%}
+      {%- assign trimmed_img = img | strip -%}
+      {%- if trimmed_img != "" -%}
+        {%- assign alt_text = alts[forloop.index0] | default: "Carousel image" -%}
+        <div class="carousel-item{% if forloop.first %} active{% endif %}">
+          <img src="{{ trimmed_img }}" class="block w-full rounded-lg" alt="{{ alt_text | escape }}">
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <!-- Controls -->
+  <span class="carousel-control-prev" data-carousel-slide="prev"><i class="fas fa-chevron-left"></i></span>
+  <span class="carousel-control-next" data-carousel-slide="next"><i class="fas fa-chevron-right"></i></span>
+
+  <script>
+    (function () {
+      const root = document.currentScript && document.currentScript.closest('[data-carousel-root="true"]');
+      if (!root) return;
+
+      const items = root.querySelectorAll('.carousel-item');
+      if (!items || items.length <= 1) return;
+
+      let currentIndex = 0;
+
+      function showItem(index) {
+        items.forEach((item, i) => {
+          item.classList.toggle('active', i === index);
+        });
+      }
+
+      const prevBtn = root.querySelector('[data-carousel-slide="prev"]');
+      const nextBtn = root.querySelector('[data-carousel-slide="next"]');
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function () {
+          currentIndex = (currentIndex === 0) ? items.length - 1 : currentIndex - 1;
+          showItem(currentIndex);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function () {
+          currentIndex = (currentIndex === items.length - 1) ? 0 : currentIndex + 1;
+          showItem(currentIndex);
+        });
+      }
+    })();
+  </script>
+</div>
