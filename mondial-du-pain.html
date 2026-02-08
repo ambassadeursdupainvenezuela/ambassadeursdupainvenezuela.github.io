@@ -45,51 +45,62 @@ image: /images/mondial-du-pain/1.jpg
         <div class="lg:w-1/2 lg:pl-12 text-dark"> <!-- Added padding here -->
           <h3 class="text-3xl font-bold mb-4 text-primary">Nuestra Participación</h3>
           <p class="mb-6">William Tse Lee participó en la 9na edición del Mondial du Pain.</p>
+          <p class="mb-6">Venezuela participó por primera vez en la 10ma edición con William Tse Lee como coach, Angélica Cova como candidata y Camila Guardia como commis.</p>
         </div>
       </div>
     </div>
 
+    <!-- Artículos relacionados -->
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12 text-primary">Artículos: Mondial du Pain 2025 (Venezuela)</h2>
+
+      {% assign post_mise = site.blog | where_exp: "p", "p.path contains '2025-10-19-mondial-mise-en-place.html'" | first %}
+      {% assign post_mesa = site.blog | where_exp: "p", "p.path contains '2025-10-20-mondial-mesa.html'" | first %}
+
+      <div class="flex flex-col lg:flex-row items-stretch gap-6 mb-12">
+        {% if post_mise %}
+        <div class="bg-white rounded-lg shadow-lg p-6 flex-1">
+          <h3 class="text-3xl font-bold mb-2 text-primary">
+            <a href="{{ post_mise.url | relative_url }}" class="hover:underline">{{ post_mise.title }}</a>
+          </h3>
+          <p class="text-dark mb-6">{{ post_mise.subtitle }}</p>
+          <a href="{{ post_mise.url | relative_url }}" class="bg-dark px-6 py-3 rounded-full text-white inline-block">Leer artículo</a>
+        </div>
+        {% endif %}
+
+        {% if post_mesa %}
+        <div class="bg-white rounded-lg shadow-lg p-6 flex-1">
+          <h3 class="text-3xl font-bold mb-2 text-primary">
+            <a href="{{ post_mesa.url | relative_url }}" class="hover:underline">{{ post_mesa.title }}</a>
+          </h3>
+          <p class="text-dark mb-6">{{ post_mesa.subtitle }}</p>
+          <a href="{{ post_mesa.url | relative_url }}" class="bg-dark px-6 py-3 rounded-full text-white inline-block">Leer artículo</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
 
     <div class="container mx-auto px-6">
       <h2 class="text-4xl font-bold text-center mb-12 text-primary">Un poco sobre la competencia</h2>
       <div class="flex flex-col lg:flex-row items-center">
         <div class="lg:w-1/2 mb-8 lg:mb-0">
-          <div id="carousel" class="relative w-full">
-            <div class="carousel-inner relative overflow-hidden w-full">
-              <div class="carousel-item active">
-                <img src="/images/mondial-du-pain/4.jpg" class="block w-full rounded-lg" alt="Image 4">
-              </div>
-              <div class="carousel-item">
-                <img src="/images/mondial-du-pain/5.jpg" class="block w-full rounded-lg" alt="Image 5">
-              </div>
-              <div class="carousel-item">
-                <img src="/images/mondial-du-pain/6.jpg" class="block w-full rounded-lg" alt="Image 6">
-              </div>
-              <div class="carousel-item">
-                <img src="/images/mondial-du-pain/7.jpg" class="block w-full rounded-lg" alt="Image 7">
-              </div>
-              <div class="carousel-item">
-                <img src="/images/mondial-du-pain/8.jpg" class="block w-full rounded-lg" alt="Image 8">
-              </div>
-              <div class="carousel-item">
-                <img src="/images/mondial-du-pain/9.jpg" class="block w-full rounded-lg" alt="Image 9">
-              </div>        
-            </div>
-            <!-- Controls -->
-            <span class="carousel-control-prev" data-slide="prev"><i class="fas fa-chevron-left"></i></span>
-            <span class="carousel-control-next" data-slide="next"><i class="fas fa-chevron-right"></i></span>
-          </div>
+          {% include carousel.html
+            id="carousel-mondial-competencia"
+            max_w="max-w-lg"
+            images="/images/mondial-du-pain/4.jpg|/images/mondial-du-pain/5.jpg|/images/mondial-du-pain/6.jpg|/images/mondial-du-pain/7.jpg|/images/mondial-du-pain/8.jpg|/images/mondial-du-pain/9.jpg"
+            alts="Mondial du Pain - competencia|Mondial du Pain - competencia|Mondial du Pain - competencia|Mondial du Pain - competencia|Mondial du Pain - competencia|Mondial du Pain - competencia"
+          %}
         </div>
         <div class="lg:w-1/2 lg:pl-12 text-dark">
+         <p class="mb-6 text-primary">Cada país debe realizar una selección nacional para participar en el Mondial du Pain con la participación y supervisión de la Asociación Ambassadeurs du Pain.</p>
+         <p class="mb-6">La competencia se rige por un reglamento oficial que define las categorías, criterios de evaluación, higiene, materiales y límites técnicos. Puedes consultarlo en la página oficial de los Embajadores del Pan</p>
           <p class="mb-6">La competencia es exigente y reglamentada. Los equipos acumulan puntos en diversos aspectos.</p>
           <p class="mb-6">Se deben seguir las reglas y lograr preparaciones excelentes para lograr figuraciones destacadas.</p>
-          <p class="mb-6 text-primary">Venezuela asumirá este reto por primera vez.</p>
+          <p class="mb-6 text-primary">Venezuela participó en el 2025 por primera vez.</p>
+          <p class="mb-6 text-primary">Venezuela está en el proceso de selección del nuevo equipo que se postulará para el Mondial du Pain 2027.</p>
         </div>
       </div>
     </div>
-
-
-
   </div>
 </section>
 
