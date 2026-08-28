@@ -1,0 +1,62 @@
+{%- comment -%}
+Shared masonry layout engine.
+
+Any container with `data-masonry-grid="true"` and class `masonry-grid`
+(items marked `masonry-grid-item`, see styles.html) gets its items'
+`grid-row-end` spans computed from their real rendered height, so
+items of different heights pack together without gaps.
+
+Works for any number of grids on the same page (e.g. a photo gallery
+and a blog cards grid can both live on index.html).
+{%- endcomment -%}
+<script>
+  (function () {
+    function pxToNumber(value) {
+      const n = parseFloat(value);
+      return Number.isFinite(n) ? n : 0;
+    }
+
+    function layoutGrid(grid) {
+      const styles = window.getComputedStyle(grid);
+      const rowHeight = pxToNumber(styles.getPropertyValue('grid-auto-rows'));
+      const gap = pxToNumber(styles.getPropertyValue('row-gap'));
+      if (!rowHeight) return;
+
+      grid.querySelectorAll('.masonry-grid-item').forEach((item) => {
+        const h = item.getBoundingClientRect().height;
+        const span = Math.ceil((h + gap) / (rowHeight + gap));
+        item.style.gridRowEnd = 'span ' + Math.max(1, span);
+      });
+    }
+
+    function layoutAll() {
+      document.querySelectorAll('[data-masonry-grid="true"]').forEach(layoutGrid);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const grids = document.querySelectorAll('[data-masonry-grid="true"]');
+      if (!grids.length) return;
+
+      const imgs = Array.from(document.querySelectorAll('[data-masonry-grid="true"] img'));
+      let pending = imgs.length;
+      if (pending === 0) layoutAll();
+
+      imgs.forEach((img) => {
+        function settle() {
+          pending -= 1;
+          if (pending === 0) requestAnimationFrame(layoutAll);
+        }
+        if (img.complete) {
+          settle();
+          return;
+        }
+        img.addEventListener('load', settle);
+        img.addEventListener('error', settle);
+      });
+
+      window.addEventListener('resize', function () {
+        requestAnimationFrame(layoutAll);
+      });
+    });
+  })();
+</script>

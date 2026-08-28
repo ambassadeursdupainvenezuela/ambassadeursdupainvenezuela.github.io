@@ -89,12 +89,22 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: var(--masonry-gap);
       grid-auto-rows: var(--masonry-row);
+      /* Without this, items are stretched to fill their (not yet computed)
+         row span, so measuring their real height in JS reads back the
+         squashed value instead of their natural content height. */
+      align-items: start;
     }
     @media (min-width: 768px) {
       .masonry-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
     @media (min-width: 1024px) {
       .masonry-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+
+    /* Wider items (blog cards with title/text, not just a photo) read
+       better with fewer, wider columns than the photo gallery. */
+    @media (min-width: 1024px) {
+      .masonry-grid.masonry-grid-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
     .masonry-grid-item {
