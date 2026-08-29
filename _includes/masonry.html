@@ -8,6 +8,12 @@ items of different heights pack together without gaps.
 
 Works for any number of grids on the same page (e.g. a photo gallery
 and a blog cards grid can both live on index.html).
+
+If the grid is wrapped in `<div class="masonry-wrap is-loading">` with a
+sibling `.masonry-skeleton` placeholder (see styles.html), this also
+reveals the real grid once it's correctly laid out and its images are
+loaded, crossfading from skeleton to real content instead of showing
+the grid mid-calculation.
 {%- endcomment -%}
 <script>
   (function () {
@@ -33,18 +39,54 @@ and a blog cards grid can both live on index.html).
       document.querySelectorAll('[data-masonry-grid="true"]').forEach(layoutGrid);
     }
 
+    // Crossfade a grid's `.masonry-wrap` from skeleton to real content.
+    // Safe to call on a grid with no wrap/skeleton (no-op).
+    var revealed = new WeakSet();
+    function reveal(grid) {
+      if (revealed.has(grid)) return;
+      revealed.add(grid);
+
+      const wrap = grid.closest('.masonry-wrap');
+      if (!wrap || !wrap.classList.contains('is-loading')) return;
+      const skeleton = wrap.querySelector('.masonry-skeleton');
+
+      // Lock the wrapper to the grid's real (now correctly spanned) height
+      // so removing the skeleton and un-absolutizing the grid afterwards
+      // doesn't cause a second jump.
+      wrap.style.height = grid.getBoundingClientRect().height + 'px';
+      grid.style.opacity = '1';
+      if (skeleton) skeleton.style.opacity = '0';
+
+      window.setTimeout(function () {
+        wrap.classList.remove('is-loading');
+        wrap.classList.add('is-loaded');
+        grid.style.position = '';
+        grid.style.opacity = '';
+        wrap.style.height = '';
+      }, 400);
+    }
+
+    function revealAll() {
+      document.querySelectorAll('[data-masonry-grid="true"]').forEach(reveal);
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
       const grids = document.querySelectorAll('[data-masonry-grid="true"]');
       if (!grids.length) return;
 
       const imgs = Array.from(document.querySelectorAll('[data-masonry-grid="true"] img'));
       let pending = imgs.length;
-      if (pending === 0) layoutAll();
+
+      function ready() {
+        layoutAll();
+        requestAnimationFrame(revealAll);
+      }
+      if (pending === 0) ready();
 
       imgs.forEach((img) => {
         function settle() {
           pending -= 1;
-          if (pending === 0) requestAnimationFrame(layoutAll);
+          if (pending === 0) ready();
         }
         if (img.complete) {
           settle();
@@ -53,6 +95,11 @@ and a blog cards grid can both live on index.html).
         img.addEventListener('load', settle);
         img.addEventListener('error', settle);
       });
+
+      // Safety net: reveal regardless after 4s, in case an image never
+      // settles for some unexpected reason. Content should never stay
+      // hidden behind the skeleton indefinitely.
+      window.setTimeout(ready, 4000);
 
       window.addEventListener('resize', function () {
         requestAnimationFrame(layoutAll);

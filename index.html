@@ -158,12 +158,30 @@ image: /images/logo-ve.jpg
 <section id="gallery" class="py-16 bg-accent">
   <div class="container mx-auto px-6">
     <h2 class="text-4xl font-bold text-center mb-12 text-primary">Galería</h2>
-    <div class="masonry-grid" data-masonry-grid="true">
-      {% for imagen in site.data.galeria %}
-        <div class="masonry-grid-item">
-          <img src="/images/galeria/{{ imagen }}" alt="{{ imagen }}" class="w-full rounded-lg cursor-zoom-in" loading="lazy">
-        </div>
-      {% endfor %}
+    <div class="masonry-wrap is-loading">
+      <div class="masonry-skeleton" aria-hidden="true">
+        <div class="skeleton-tile skeleton-shimmer" style="height:220px"></div>
+        <div class="skeleton-tile skeleton-shimmer" style="height:320px"></div>
+        <div class="skeleton-tile skeleton-shimmer" style="height:180px"></div>
+        <div class="skeleton-tile skeleton-shimmer" style="height:260px"></div>
+        <div class="skeleton-tile skeleton-shimmer" style="height:300px"></div>
+        <div class="skeleton-tile skeleton-shimmer" style="height:200px"></div>
+        <div class="skeleton-tile skeleton-shimmer" style="height:240px"></div>
+        <div class="skeleton-tile skeleton-shimmer" style="height:280px"></div>
+      </div>
+      <div class="masonry-grid" data-masonry-grid="true">
+        {% for imagen in site.data.galeria %}
+          <div class="masonry-grid-item">
+            <img src="/images/galeria/{{ imagen }}" alt="{{ imagen }}" class="w-full rounded-lg cursor-zoom-in" loading="lazy">
+          </div>
+        {% endfor %}
+      </div>
+      <noscript>
+        <style>
+          .masonry-wrap.is-loading .masonry-skeleton { display: none; }
+          .masonry-wrap.is-loading .masonry-grid { position: static; opacity: 1; pointer-events: auto; }
+        </style>
+      </noscript>
     </div>
 
     <!-- Modal (Lightbox) -->
@@ -231,23 +249,43 @@ image: /images/logo-ve.jpg
 <section id="blog-news" class="py-16 bg-secondary">
   <div class="container mx-auto px-6">
     <h2 class="text-4xl font-bold text-center mb-12 text-dark">Blog y Noticias</h2>
-    <div class="masonry-grid masonry-grid-cards" data-masonry-grid="true">
-      {% assign posts = site.blog | sort: 'date' | reverse %}
-      {% for post in posts limit: 6 %}
-      <div class="masonry-grid-item">
-        <div class="bg-accent rounded-lg shadow-lg overflow-hidden">
-          {% if post.image %}
-          <a href="{{ post.url | relative_url }}">
-            <img src="{{ post.image }}" alt="{{ post.title }}" class="w-full h-auto">
-          </a>
-          {% endif %}
-          <div class="p-6">
-            <h2 class="text-3xl font-bold mb-2 text-primary"><a href="{{ post.url | relative_url }}" class="hover:underline">{{ post.title }}</a></h2>
-            <p class="text-dark">{{ post.subtitle }}</p>
+    <div class="masonry-wrap is-loading">
+      <div class="masonry-skeleton masonry-skeleton-cards" aria-hidden="true">
+        {% for i in (1..4) %}
+        <div class="skeleton-card">
+          <div class="skeleton-tile skeleton-shimmer" style="height:180px;border-radius:0;"></div>
+          <div class="skeleton-card-body">
+            <div class="skeleton-line skeleton-shimmer" style="width:85%"></div>
+            <div class="skeleton-line skeleton-shimmer" style="width:95%"></div>
+            <div class="skeleton-line skeleton-shimmer" style="width:60%"></div>
           </div>
         </div>
+        {% endfor %}
       </div>
-      {% endfor %}
+      <div class="masonry-grid masonry-grid-cards" data-masonry-grid="true">
+        {% assign posts = site.blog | sort: 'date' | reverse %}
+        {% for post in posts limit: 6 %}
+        <div class="masonry-grid-item">
+          <div class="bg-accent rounded-lg shadow-lg overflow-hidden">
+            {% if post.image %}
+            <a href="{{ post.url | relative_url }}">
+              <img src="{{ post.image }}" alt="{{ post.title }}" class="w-full h-auto">
+            </a>
+            {% endif %}
+            <div class="p-6">
+              <h2 class="text-3xl font-bold mb-2 text-primary"><a href="{{ post.url | relative_url }}" class="hover:underline">{{ post.title }}</a></h2>
+              <p class="text-dark">{{ post.subtitle }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <noscript>
+        <style>
+          .masonry-wrap.is-loading .masonry-skeleton { display: none; }
+          .masonry-wrap.is-loading .masonry-grid { position: static; opacity: 1; pointer-events: auto; }
+        </style>
+      </noscript>
     </div>
     <div class="text-center">
       <a href="/blog.html" class="bg-dark px-6 py-3 rounded-full text-white">Ir al Blog</a>
