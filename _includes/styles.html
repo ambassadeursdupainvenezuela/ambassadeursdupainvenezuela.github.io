@@ -203,14 +203,13 @@
 
     /* Blog post hero image: no JS needed, the shimmer is the image's own
        background and shows through until the photo finishes loading and
-       paints over it. aspect-ratio reserves a sensible box up front and
-       is automatically overridden by the image's real ratio once known. */
+       paints over it. Full width, natural height (like every other image
+       on the site) - no fixed aspect-ratio box, so portrait photos are
+       never letterboxed down to a slim strip in the middle. */
     .hero-image {
       display: block;
       width: 100%;
-      max-height: 32rem;
-      aspect-ratio: 16 / 9;
-      object-fit: contain;
+      height: auto;
       background-color: #fffaf0;
     }
     .hero-image.is-loaded {
