@@ -86,7 +86,9 @@
       --masonry-gap: 1.5rem;   /* ~24px */
       --masonry-row: 10px;     /* base row height for spanning */
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      /* One column on phones - two narrow columns of photos/cards read
+         cramped on small screens. */
+      grid-template-columns: repeat(1, minmax(0, 1fr));
       gap: var(--masonry-gap);
       grid-auto-rows: var(--masonry-row);
       /* Without this, items are stretched to fill their (not yet computed)
@@ -159,7 +161,10 @@
     .masonry-skeleton {
       transition: opacity 0.35s ease;
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      /* Must mirror .masonry-grid's breakpoints exactly, or the skeleton
+         visibly reflows into a different column count than the real
+         grid it's standing in for once it's revealed. */
+      grid-template-columns: repeat(1, minmax(0, 1fr));
       gap: 1.5rem;
     }
     @media (min-width: 768px) {
