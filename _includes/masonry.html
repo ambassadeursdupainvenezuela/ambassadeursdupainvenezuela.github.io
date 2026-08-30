@@ -71,35 +71,48 @@ the grid mid-calculation.
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-      const grids = document.querySelectorAll('[data-masonry-grid="true"]');
+      const grids = Array.from(document.querySelectorAll('[data-masonry-grid="true"]'));
       if (!grids.length) return;
 
-      const imgs = Array.from(document.querySelectorAll('[data-masonry-grid="true"] img'));
-      let pending = imgs.length;
+      // Each grid is gated by its OWN images, not the whole page's. A page
+      // can have more than one grid (e.g. index.html has Galería and Blog
+      // y Noticias) - a slow/lazy image in one must never hold up the
+      // other's reveal.
+      grids.forEach((grid) => {
+        const imgs = Array.from(grid.querySelectorAll('img'));
+        let pending = imgs.length;
 
-      function ready() {
-        layoutAll();
-        requestAnimationFrame(revealAll);
-      }
-      if (pending === 0) ready();
+        function ready() {
+          layoutGrid(grid);
+          requestAnimationFrame(() => reveal(grid));
+        }
+        if (pending === 0) ready();
 
-      imgs.forEach((img) => {
-        function settle() {
-          pending -= 1;
-          if (pending === 0) ready();
-        }
-        if (img.complete) {
-          settle();
-          return;
-        }
-        img.addEventListener('load', settle);
-        img.addEventListener('error', settle);
+        imgs.forEach((img) => {
+          function settle() {
+            pending -= 1;
+            if (pending === 0) ready();
+          }
+          if (img.complete) {
+            settle();
+          } else {
+            img.addEventListener('load', settle);
+            img.addEventListener('error', settle);
+          }
+
+          // Keep correcting this item's span for the page's lifetime, not
+          // just during the initial reveal: a `loading="lazy"` image (e.g.
+          // in the Galería) may only start downloading once the user
+          // scrolls it into view, long after the grid has already been
+          // revealed with everything else correctly measured.
+          img.addEventListener('load', () => requestAnimationFrame(() => layoutGrid(grid)));
+        });
+
+        // Safety net: reveal this grid regardless after 4s, in case one of
+        // its images never settles for some unexpected reason. Content
+        // should never stay hidden behind the skeleton indefinitely.
+        window.setTimeout(ready, 4000);
       });
-
-      // Safety net: reveal regardless after 4s, in case an image never
-      // settles for some unexpected reason. Content should never stay
-      // hidden behind the skeleton indefinitely.
-      window.setTimeout(ready, 4000);
 
       window.addEventListener('resize', function () {
         requestAnimationFrame(layoutAll);
