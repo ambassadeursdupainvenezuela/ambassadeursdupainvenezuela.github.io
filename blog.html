@@ -42,7 +42,7 @@ image: /images/delegacion.jpg
               <img src="{{ post.image }}" alt="Imagen del artículo {{ post.title }}" class="w-full h-auto">
             </a>
             <div class="p-6">
-              <h2 class="text-3xl font-bold mb-2 text-primary">{{ post.title }}</h2>
+              <h2 class="text-3xl font-bold mb-2 text-primary"><a href="{{ post.url }}" class="hover:underline">{{ post.title }}</a></h2>
               <p class="text-dark mb-4">{{ post.subtitle }}</p>
               <a href="{{ post.url }}" class="text-highlight hover:underline">Leer Más <i
                   class="fas fa-arrow-right"></i></a>
